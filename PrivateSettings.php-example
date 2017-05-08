@@ -1,0 +1,20 @@
+<?php
+# Protect against web entry
+if ( !defined( 'MEDIAWIKI' ) ) {
+	exit;
+}
+
+## This file contains all sensitive settings. Under no circumstances is this file to be made
+## public!
+
+## Database settings
+$wgDBtype = "mysql";
+$wgDBserver = "localhost";
+$wgDBuser = "wikiuser";
+$wgDBpassword = "REDACTED";
+
+$wgSecretKey = "0352cc75a8350cf9459ca199c5ac1c74489fd0bdea1f02b0fa0b62a903af1ef5";
+
+# Site upgrade key. Must be set to a string (default provided) to turn on the
+# web installer while LocalSettings.php is in place
+#$wgUpgradeKey = "69747031de9cae04";
