@@ -2,7 +2,7 @@
 # This is the LocalSettings.php file.
 # This file determines the database name, loads the common settings, the $wgConf wiki-specific
 # settings, skins, shared and wiki-specific extensions and the conditional CommonSettings
-# This file is linked from $IP, either by symlink or by require_once( "config/LocalSettings.php" );
+# This file is linked from $IP, either by symlink or by require_once( "$IP/config/LocalSettings.php" );
 
 $configDir = __DIR__;
 
