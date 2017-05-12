@@ -26,7 +26,7 @@ $wgRegistrationExtensions = [
 	'RefreshSpecial',
 	'RenameUser',
 	'SiteMatrix',
-	'SyntaxHighlight_GeSHi', #On Linux, set chmod a+x /path/to/extensions/SyntaxHighlight_GeSHi/pygments/pygmentize to allow the library to execute
+	'SyntaxHighlight_GeSHi', // On Linux, set chmod a+x/path/to/extensions/SyntaxHighlight_GeSHi/pygments/pygmentize to allow the library to execute
 	'SpamBlacklist',
 	'Tabber',
 	'TitleBlacklist',
@@ -66,7 +66,7 @@ $wgGlobalPreferencesDB = $wgSharedDB;
 
 # GlobalUserrights
 $wgSharedTables[] = 'global_user_groups';
-$wgGroupPermissions['staff']['userrights-global'] = false; //Needs to be unset, as it is assigned automatically
+$wgGroupPermissions['staff']['userrights-global'] = false; // Needs to be unset, as it is assigned automatically
 $wgGroupPermissions['steward']['userrights-global'] = true;
 
 # InterWiki
@@ -102,10 +102,10 @@ $wgSpamBlacklistFiles = [
 ];
 
 # SiteMatrix
-$wgSiteMatrixFile = false; // This the grid. Might need to be set differently
-$wgSiteMatrixPrivateSites = "$IP/config/private.dblist";
-$wgSiteMatrixFishbowlSites = "$IP/config/restricted.dblist";
-$wgSiteMatrixClosedSites = "$IP/config/closed.dblist";
+$wgSiteMatrixFile = "$IP/config/langlist";
+$wgSiteMatrixPrivateSites = "$IP/config/dblists/private.dblist";
+$wgSiteMatrixFishbowlSites = "$IP/config/dblists/restricted.dblist";
+$wgSiteMatrixClosedSites = "$IP/config/dblists/closed.dblist";
 
 # TitleBlackList
 $wgTitleBlackListSources = [
