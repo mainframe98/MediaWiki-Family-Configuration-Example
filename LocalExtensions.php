@@ -47,12 +47,12 @@ if ( $fgUseDPL3 ) {
 if ( $fgUseEcho ) {
 	wfLoadExtension( 'Echo' );
 
-	if ( $fgUseFlow ) {
-		wfLoadExtension( 'Flow' );
-	}
-
 	if ( $fgUseThanks ) {
 		wfLoadExtension('Thanks' );
+	}
+
+	if ( $fgUseFlow ) {
+		wfLoadExtension( 'Flow' );
 	}
 }
 

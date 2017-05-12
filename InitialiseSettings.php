@@ -107,10 +107,14 @@ $wgConf->settings = [
 		]
 	],
 	'fgUseEcho' => [
-		'default' => true
+		'default' => false,
+		'echo' => true,
+		'flow' => true, // Flow depends on echo
+	    'thanks' => true // So does thanks
 	],
 	'fgUseFlow' => [
-		'default' => false
+		'default' => false,
+	    'flow' => true,
 	],
 	 'fgUseThanks' => [
 		'default' => false

@@ -16,7 +16,7 @@ This is an example configuration for a MediaWiki family from scratch. Existing w
 
 ### dblists
 This directory contains all database lists. The file structure is 1 database per line.
-* `all.dblist` contains all known databases. This file uses a different structure than the others as it also contains the site name, language code and any tags, separated by a pipe (|).
+* `all.dblist` contains all known databases. This file uses a different structure than the others as it also contains the site name, language code and any tags, separated by a pipe (|). The tags are comma separated.
 * `closed.dblist` contains all wikis that are closed, which means they cannot be edited by those who are not stewards.
 * `loginonly.dblist` contains all wikis that require an account to edit.
 * `restricted.dblist` contains all wikis that require being invited to edit, but the content may be viewed freely.

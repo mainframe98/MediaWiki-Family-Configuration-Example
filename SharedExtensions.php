@@ -102,10 +102,17 @@ $wgSpamBlacklistFiles = [
 ];
 
 # SiteMatrix
-$wgSiteMatrixFile = "$IP/config/langlist";
-$wgSiteMatrixPrivateSites = "$IP/config/dblists/private.dblist";
-$wgSiteMatrixFishbowlSites = "$IP/config/dblists/restricted.dblist";
-$wgSiteMatrixClosedSites = "$IP/config/dblists/closed.dblist";
+$wgSiteMatrixFile = "$configDir/langlist";
+$wgSiteMatrixPrivateSites = "$configDir/dblists/private.dblist";
+$wgSiteMatrixFishbowlSites = "$configDir/dblists/restricted.dblist";
+$wgSiteMatrixClosedSites = "$configDir/dblists/closed.dblist";
+$wgSiteMatrixSites = [
+	'wiki' => [
+		'name' => 'Example',
+		'host' => 'www.example.org',
+		'prefix' => 'w',
+	]
+];
 
 # TitleBlackList
 $wgTitleBlackListSources = [

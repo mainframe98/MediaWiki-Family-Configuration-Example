@@ -6,10 +6,25 @@
 
 $configDir = __DIR__;
 
-// Generate the db name
+$wgConf = new SiteConfiguration();
+$wgConf->suffixes = file( "suffixes.list" );
+
+# Generate the db name
 if ( defined( 'MW_DB' ) ) {
 	// Command-line mode and maintenance scripts (e.g. update.php)
 	$wgDBname = MW_DB;
+
+	// Define default suffix for that rare case
+	$fgSuffix = 'wiki';
+
+	// TODO: Run some edge case checks on this. The wiki name might contain a suffix value
+	foreach ( $wgConf->suffixes as $suffix ) {
+		if ( strpos( $wgDBname, $suffix ) > 0 ) {
+			$fgSuffix = $suffix;
+			break;
+		}
+	}
+
 } else {
 	// Web server
 	$server = $_SERVER['SERVER_NAME'];
@@ -23,10 +38,10 @@ if ( defined( 'MW_DB' ) ) {
 	// Reverse the array so the tld is the first item in the array
 	// Content will look like:
 	// $urlComponents = [
-	// [0] => tld       (org)
-	// [1] => domain    (example)
-	// [2] => subdomain (www)
-	// [3...] => other subdomains
+	// [0] => tld           (org)
+	// [1] => domain        (example)
+	// [2] => sub domain    (www)
+	// [3...] => other sub domains
 	// ]
 	$urlComponents = array_reverse( $urlComponents );
 
@@ -56,11 +71,11 @@ if ( defined( 'MW_DB' ) ) {
 	// Remember to update suffixes.list when making edits to this configuration!
 	switch( $urlComponents[1] ) {
 		default:
-			$suffix = 'wiki';
+			$fgSuffix = 'wiki';
 			break;
 	}
 
-	$wgDBname = $wikiname . $suffix;
+	$wgDBname = $wikiname . $fgSuffix;
 }
 
 # Import private settings
@@ -68,9 +83,6 @@ require_once( "$configDir/PrivateSettings.php" );
 
 # Get the shared settings for all wikis
 require_once( "$configDir/CommonSettings.php" );
-
-# Get the Wiki specific settings
-$wgConf = new SiteConfiguration();
 
 # Load the settings from InitialiseSettings.php which contains the settings for all wikis
 require_once( "$configDir/InitialiseSettings.php" );
@@ -82,8 +94,8 @@ $fgDatabaseList = file( "$configDir/dblists/all.dblist" );
 
 # Set the language and site name for each database/wiki
 foreach ( $fgDatabaseList as $wiki ) {
-	$wikiDB = explode( '|', $wiki, 4 );
-	list( $dbName, $siteName, $siteLang, $wikiTagList ) = array_pad( $wikiDB, 4, '' );
+	$wikiDB = explode( '|', $wiki, 3 );
+	list( $dbName, $siteName, $siteLang ) = array_pad( $wikiDB, 3, '' );
 	$wgLocalDatabases[] = $dbName;
 	$wgConf->settings['wgSitename'][$dbName] = $siteName;
 	$wgConf->settings['wgLanguageCode'][$dbName] = $siteLang;
@@ -93,6 +105,20 @@ foreach ( $fgDatabaseList as $wiki ) {
 if ( in_array ($wgDBname, $wgLocalDatabases ) ) {
 	require_once( "$configDir/WikiNotFound404.php" );
 	// Optional: Redirect to a "No such wiki" page on the central wiki.
+}
+
+$wikiTagList = [];
+
+# Get a list of all the tag dblists
+$tagDbLists = glob( "$configDir/dblists/tags/*" );
+foreach ( $tagDbLists as $dblistfile ) {
+	$dblist = file( $dblistfile );
+
+	if ( in_array( $wgDBname, $dblist ) ) {
+		// Add the tag to the list of tags, which is equal to the name of the dblist, minus the
+		// file extension
+		$wikiTagList[] = basename( $dblistfile, '.dblist' );
+	}
 }
 
 $fgLoginOnlyDatabaseList = file( "$configDir/dblists/loginonly.dblist" );
@@ -165,11 +191,10 @@ function efGetSiteParams( SiteConfiguration $conf, $wiki ) {
 $wgConf->siteParamsCallback = 'efGetSiteParams';
 
 # Set the wikis for $wgConf
-$wgConf->suffixes = file( "suffixes.list" );
 $wgConf->wikis = $wgLocalDatabases;
 
 # Extract the globals
-$wgConf->extractAllGlobals( $wgDBname );
+$wgConf->extractAllGlobals( $wgDBname, $fgSuffix, [], $wikiTagList );
 
 # Load the extensions
 require_once( "$configDir/SharedExtensions.php" );
