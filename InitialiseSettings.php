@@ -56,7 +56,7 @@ $wgConf->settings = [
 		'default' => "//$wikiname.example.org"
 	],
 	'wgMetaNamespace' => [
-		#default => null //Note: Not set, will be generated automatically from $wgSitename
+		'default' => null // Set to null to be generated automatically from $wgSitename
 	],
 	# InstantCommons allows wiki to use images from https://commons.wikimedia.org
 	'wgUseInstantCommons' => [
@@ -65,6 +65,12 @@ $wgConf->settings = [
 	'wgUseSiteJs' => [
 		'default' => false // Disabled for security reasons, request
 	],
+	# Don't add rel="nofollow" for these domains, as these sites are not external
+    'wgNoFollowDomainExceptions' => [
+    	'default' => [
+    		'https://www.example.org'
+	    ]
+    ],
 	//Extensions
 	'fgUseAbuseFilter' => [
 		'default' => false,

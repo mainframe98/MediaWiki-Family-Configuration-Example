@@ -40,6 +40,9 @@ $wgSharedDB = 'metawiki';
 # Shared Bot passwords database
 $wgBotPasswordsDatabase = $wgSharedDB;
 
+# Remove user_properties from the shared tables as Extension:GlobalPreferences takes care of this
+unset( $wgSharedTables['user_properties'] );
+
 ## Shared memory settings
 $wgMainCacheType = CACHE_NONE;
 $wgMemCachedServers = [];
@@ -49,6 +52,7 @@ $wgMemCachedServers = [];
 $wgUploadDirectory = "{$wgScriptPath}/$wgDBname/images";
 $wgUploadPath = $wgUploadDirectory;
 $wgAllowCopyUploads = true;
+$wgMaxUploadSize = 1024 * 1024 * 25; # 25 Mb
 $wgCopyUploadsFromSpecialUpload = true;
 $wgUseImageMagick = true;
 $wgImageMagickConvertCommand = "/usr/bin/convert";
@@ -71,6 +75,16 @@ $wgCacheDirectory = "$IP/cache";
 # Changing this will log out all existing sessions.
 $wgAuthenticationTokenVersion = "1";
 
+# Set the cookie domain to a non explicit sub domain to prevent users being logged out when
+# accessing the wiki family from other sub domains
+$wgCookieDomain = '.example.org';
+
+# Set the Cross Site AJAX domains to allow requests across the entire family. Extend this with
+# wikis that do not use a sub domain
+$wgCrossSiteAJAXdomains = [
+	'*.example.org'
+];
+
 # Path to the GNU diff3 utility. Used for conflict resolution.
 $wgDiff3 = "/usr/bin/diff3";
 
@@ -84,8 +98,8 @@ $wgPageLanguageUseDB = true;
 # Enable MiserMode to reduce server load
 $wgMiserMode = true;
 
-# Remove user_properties from the shared tables as Extension:GlobalPreferences takes care of this
-unset( $wgSharedTables['user_properties'] );
+# Cache 2000 query rows instead of the regular 1000
+$wgQueryCacheLimit = 2000;
 
 # User rights - Remember to place rights for extensions that aren't loaded by default in their
 # block in Extensions.php!
@@ -172,8 +186,14 @@ $wgGroupPermissions['steward']['undelete'] = true;
 $wgGroupPermissions['steward']['unwatchedpages'] = true;
 $wgGroupPermissions['steward']['upload'] = true;
 $wgGroupPermissions['steward']['upload_by_url'] = true;
+$wgGroupPermissions['steward']['viewsuppressed'] = true;
 ### Bot-global
 $wgGroupPermissions['bot-global'] = $wgGroupPermissions['bot'];
+### Suppressors
+$wgGroupPermissions['suppress']['hideuser'] = true;
+$wgGroupPermissions['suppress']['suppressrevision'] = true;
+$wgGroupPermissions['suppress']['viewsuppressed'] = true;
+$wgGroupPermissions['suppress']['suppressionlog'] = true;
 
 # Allow any user to remove their own rights
 $wgGroupsRemoveFromSelf['user'] = true;
@@ -181,3 +201,21 @@ $wgGroupsRemoveFromSelf['user'] = true;
 # Allow bureaucrats to set local rights
 $wgAddGroups['bureaucrat'] = [ 'sysop', 'bot', 'bureaucrat' ];
 $wgRemoveGroups['bureaucrat'] = [ 'sysop', 'bot' ];
+
+# Set the password policy for stewards, based on the requirements for sysops
+$wgPasswordPolicy['policies']['stewards'] = [
+	'MinimalPasswordLength' => 8,
+	'MinimumPasswordLengthToLogin' => 1,
+	'PasswordCannotMatchUsername' => true,
+	'PasswordCannotBePopular' => 25,
+];
+
+# Add the wiki family host name to the list of reserved user names to prevent abuse
+$wgReservedUsernames[] = 'Example';
+$wgReservedUsernames[] = 'ExampleBot';
+$wgReservedUsernames[] = 'Steward';
+$wgReservedUsernames[] = 'StewardBot';
+
+# Require users to exist for at least 7 days and have made 10 edits before becoming auto confirmed
+$wgAutoConfirmAge = 86400 * 7; // 60 * 60 * 24 * 7
+$wgAutoConfirmCount = 10;

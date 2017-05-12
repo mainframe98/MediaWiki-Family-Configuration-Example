@@ -19,3 +19,8 @@ if ( $fgUseMonoBook ) {
 
 # Load skins supporting Skin registration
 wfLoadSkins( $wgRegistrationSkins );
+
+# Set vector as the fallback skin if the site uses a different default skin
+if ( $wgDefaultSkin !== 'vector' ) {
+	$wgFallbackSkin = 'vector';
+}
