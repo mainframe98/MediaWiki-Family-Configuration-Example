@@ -8,7 +8,7 @@ $wgRegistrationExtensions = [
 	'CirrusSearch',
 	'Cite',
 	'CiteThisPage',
-	'Elastica', # CirrusSearch dependency
+	'Elastica', // CirrusSearch dependency
 	'GlobalBlocking',
 	'GlobalCssJs',
 	'GlobalPreferences',
@@ -45,12 +45,12 @@ $wgSharedTables[] = 'spoofuser';
 
 # CirrusSearch
 $wgSearchType = 'CirrusSearch';
-$wgCirrusSearchServers = [ 'localhost' ]; //TODO: Verify me!
+$wgCirrusSearchServers = [ 'localhost' ];
 ## Turn off leading wildcard matches, they are a very slow and inefficient query
 $wgCirrusSearchAllowLeadingWildcard = false;
 
 # GlobalBlocking
-$wgApplyGlobalBlocks = $wgDBname !== 'metawiki'; // Don't apply a global block on meta, so it can be used to contest a global block
+$wgApplyGlobalBlocks = $wgDBname !== $wgSharedDB; // Don't apply a global block on the central wiki, so it can be used to contest a global block
 $wgGlobalBlockingDatabase = $wgSharedDB;
 
 # GlobalCssJs
@@ -81,7 +81,7 @@ $wgGroupPermissions['steward']['maintenance'] = true;
 # MessageCommons
 $wgMessageCommonsLang = 'en';
 $wgMessageCommonsDatabase = $wgSharedDB;
-$wgMessageCommonsIsCommons = 'metawiki' === $wgDBname;
+$wgMessageCommonsIsCommons = $wgDBname === $wgSharedDB;
 
 # Nuke
 $wgGroupPermissions['steward']['nuke'] = true;
@@ -109,8 +109,9 @@ $wgGroupPermissions['bureaucrat']['renameuser'] = false;
 # SpamBlacklist
 $wgSpamBlacklistFiles = [
 	"[[m:Spam blacklist]]", // Wikimedia's list
-	//  database				title
-	"DB: metawiki MediaWiki:Global-spam-blacklist",
+    // Spam black list from the central wiki
+	//   database				title
+	"DB: $wgSharedDB MediaWiki:Global-spam-blacklist",
 ];
 
 # SiteMatrix

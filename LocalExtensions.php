@@ -3,7 +3,7 @@
 if ( $fgUseAbuseFilter ) {
 	wfLoadExtension( 'AbuseFilter' );
 	$wgAbuseFilterCentralDB = $wgSharedDB;
-	$wgAbuseFilterIsCentral = $wgDBname === 'metawiki';
+	$wgAbuseFilterIsCentral = $wgDBname === $wgSharedDB;
 	## Adding rights
 	### Everyone
 	$wgGroupPermissions['*']['abusefilter-log-detail'] = true;
@@ -47,12 +47,29 @@ if ( $fgUseDPL3 ) {
 if ( $fgUseEcho ) {
 	wfLoadExtension( 'Echo' );
 
+	$wgEchoSharedTrackingDB = $wgSharedDB;
+	$wgEchoCrossWikiNotifications = true;
+	$wgEchoUseCrossWikiBetaFeature = true;
+	$wgFlowUseMemcache = false; // Until memcached has been setup
+	$wgFlowSearchServers = $wgCirrusSearchServers;
+
 	if ( $fgUseThanks ) {
 		wfLoadExtension('Thanks' );
 	}
 
 	if ( $fgUseFlow ) {
 		wfLoadExtension( 'Flow' );
+
+		$wgFlowDefaultWikiDb = $wgSharedDB;
+
+		if ( $fgEnableGroupContentModerator ) {
+			$wgGroupPermissions['content-moderator']['flow-create-board'] = true;
+		}
+		$wgGroupPermissions['sysop']['flow-create-board'] = true;
+		$wgGroupPermissions['steward']['flow-create-board'] = true;
+
+
+		$wgGroupPermissions['steward']['flow-create-post'] = true;
 	}
 }
 
@@ -62,12 +79,18 @@ if ( $fgUseEditCount ) {
 
 if ( $fgUseGadgets ) {
 	wfLoadExtension( 'Gadgets' );
+
+	$wgGroupPermissions['sysop']['gadgets-edit'] = true;
+	$wgGroupPermissions['sysop']['gadgets-definition-edit'] = true;
+	$wgGroupPermissions['steward']['gadgets-edit'] = true;
+	$wgGroupPermissions['steward']['gadgets-definition-edit'] = true;
 }
 
 if ( $fgUseGlobalUserPage ) {
 	wfLoadExtension( 'GlobalUserPage' );
 }
 
+// ImageMap requires Uploads to be enabled
 if ( $fgUseImageMap && $wgEnableUploads ) {
 	wfLoadExtension( 'ImageMap' );
 }

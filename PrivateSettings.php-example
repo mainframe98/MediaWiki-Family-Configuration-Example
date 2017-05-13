@@ -4,8 +4,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	exit;
 }
 
-## This file contains all sensitive settings. Under no circumstances is this file to be made
-## public!
+## This file contains all sensitive settings. Under no circumstances is this file to be made public!
 
 ## Database settings
 $wgDBtype = "mysql";
@@ -14,8 +13,8 @@ $wgDBserver = "localhost";
 $wgDBuser = "wikiuser";
 $wgDBpassword = "REDACTED";
 # Database user for maintenance scripts
-$wgDBadminuser = "wikiadmin"
-$wgDBadminpassword = "REDACTED"
+$wgDBadminuser = "wikiadmin";
+$wgDBadminpassword = "REDACTED";
 
 $wgSecretKey = "0352cc75a8350cf9459ca199c5ac1c74489fd0bdea1f02b0fa0b62a903af1ef5";
 
