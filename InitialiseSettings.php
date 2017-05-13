@@ -58,7 +58,7 @@ $wgConf->settings = [
 	'wgMetaNamespace' => [
 		'default' => null // Set to null to be generated automatically from $wgSitename
 	],
-	# InstantCommons allows wiki to use images from https://commons.wikimedia.org
+	// InstantCommons allows wiki to use images from https://commons.wikimedia.org
 	'wgUseInstantCommons' => [
 		'default' => false
 	],
@@ -71,6 +71,17 @@ $wgConf->settings = [
     		'https://www.example.org'
 	    ]
     ],
+    // This only needs to be set for wikis where $fgPrivateWiki = true
+    // Remember to add a + before the name of the wiki, as the array must be merged!
+    'wgWhitelistRead' => [
+	    'default' => [
+		    'Special:RunJobs',
+		    'Main Page',
+		    'MediaWiki:Common.css', // Custom CSS on the whitelisted pages should be visible
+		    'MediaWiki:Common.js', // Custom JavaScript on the whitelisted pages should work
+		    'Special:OAuth' // Required for OAuth functionality
+	    ]
+	],
 	//Extensions
 	'fgUseAbuseFilter' => [
 		'default' => false,

@@ -1,5 +1,5 @@
 <?php
-#Conditional Common settings contains larger code blocks toggled by a configuration setting in
+# Conditional Common settings contains larger code blocks toggled by a configuration setting in
 # $wgConf.
 # For user groups, please keep all rights sorted alphabetically
 
@@ -57,14 +57,6 @@ if ( $fgLoginRequiredWiki ) {
 			$wgGroupPermissions['invited']['read'] = true;
 			$wgGroupPermissions['bureaucrat']['read'] = true;
 			$wgGroupPermissions['steward']['read'] = true;
-
-			// White list pages that should be accessible under all circumstances
-			$wgWhitelistRead = [
-				'Special:RunJobs',
-				'Main Page',
-				'MediaWiki:Common.css',
-				'MediaWiki:Common.js'
-			];
 		}
 	}
 }
