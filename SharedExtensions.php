@@ -25,7 +25,7 @@ $wgRegistrationExtensions = [
 	'PdfHandler',
 	'Poem',
 	'RefreshSpecial',
-	'RenameUser',
+	'Renameuser',
 	'SiteMatrix',
 	'SyntaxHighlight_GeSHi', // On Linux, set chmod a+x/path/to/extensions/SyntaxHighlight_GeSHi/pygments/pygmentize to allow the library to execute
 	'SpamBlacklist',
