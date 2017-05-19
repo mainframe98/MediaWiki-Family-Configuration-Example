@@ -130,7 +130,7 @@ $wgConf->settings = [
 	 'fgUseThanks' => [
 		'default' => false
 	 ],
-	 'fgUseEditCount' => [
+	 'fgUseEditcount' => [
 		'default' => true
 	 ],
 	 'fgUseGadgets' => [

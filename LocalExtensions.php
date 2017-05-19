@@ -73,8 +73,8 @@ if ( $fgUseEcho ) {
 	}
 }
 
-if ( $fgUseEditCount ) {
-	wfLoadExtension( 'EditCount' );
+if ( $fgUseEditcount ) {
+	wfLoadExtension( 'Editcount' );
 }
 
 if ( $fgUseGadgets ) {
