@@ -102,7 +102,7 @@ foreach ( $fgDatabaseList as $wiki ) {
 }
 
 # Check if the obtained database name is in the list of databases
-if ( in_array ($wgDBname, $wgLocalDatabases ) ) {
+if ( !in_array ($wgDBname, $wgLocalDatabases ) ) {
 	require_once( "$configDir/WikiNotFound404.php" );
 	// Optional: Redirect to a "No such wiki" page on the central wiki.
 }
@@ -194,7 +194,7 @@ $wgConf->siteParamsCallback = 'efGetSiteParams';
 $wgConf->wikis = $wgLocalDatabases;
 
 # Extract the globals
-$wgConf->extractAllGlobals( $wgDBname, $fgSuffix, [], $wikiTagList );
+$wgConf->extractAllGlobals( $wikiname, $fgSuffix, [], $wikiTagList );
 
 # Load the extensions
 require_once( "$configDir/SharedExtensions.php" );
