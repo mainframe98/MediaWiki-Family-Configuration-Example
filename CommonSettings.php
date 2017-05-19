@@ -68,7 +68,9 @@ $wgPingback = true;
 $wgShellLocale = "C.UTF-8";
 
 # Set Tidy to RemexHtml as it is the same as used by WMF, so it'll function nicely along Parsoid
-$wgTidyConfig = 'RemexHtml';
+$wgTidyConfig = [
+	'driver' => 'RemexHtml'
+];
 
 ## Set $wgCacheDirectory to a writable directory on the web server
 ## to make your wiki go slightly faster. The directory should not
