@@ -6,7 +6,7 @@ This is an example configuration for a MediaWiki family from scratch. Existing w
 * `LocaLSettings.php` contains the part that determines the database name, or redirects the user to an error page.
 * `CommonSettings.php` contains the settings that are the same across all wikis.
 * `ConditionalCommonSettings.php` contains the settings that are shared across many wikis, but may be toggled on or off on request. Their functionality depends on a configuration variable from `InitialiseSettings.php`.
-* `InitialiseSettings.php` contains the settings per wiki. The settings are set per wiki by database name, per group by suffix or with the special identifier `default`, which sets the default for all wikis, unless overridden.
+* `InitialiseSettings.php` contains the settings per wiki. The settings are set per wiki by database name, per group by suffix or tag, or with the special identifier `default`, which sets the default for all wikis, unless overridden.
 * `SharedExtensions.php` contains the extensions that are loaded for all wikis and their configuration.
 * `LocalExtensions.php` contains the extensions that may be shared across wikis, but may be toggled on or off on request. Their functionality depends on a configuration variable from `InitialiseSettings.php`.
 * `Skins.php` contains the skins that can be used by the wikis. Aside from the default skin, they may be toggled on or off on request. Their functionality depends on a configuration variable from `InitialiseSettings.php`.
