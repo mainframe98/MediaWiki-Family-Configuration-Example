@@ -7,7 +7,7 @@
 $configDir = __DIR__;
 
 $wgConf = new SiteConfiguration();
-$wgConf->suffixes = file( "suffixes.list" );
+$wgConf->suffixes = file( "$configDir/suffixes.list" );
 
 # Generate the db name
 if ( defined( 'MW_DB' ) ) {
