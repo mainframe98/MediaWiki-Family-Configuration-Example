@@ -41,7 +41,9 @@ $wgSharedDB = 'metawiki';
 $wgBotPasswordsDatabase = $wgSharedDB;
 
 # Remove user_properties from the shared tables as Extension:GlobalPreferences takes care of this
-unset( $wgSharedTables['user_properties'] );
+# Don't presume that user_properties is the second key (index 1), so have PHP find it for us
+$index = array_search( 'user_properties', $wgSharedTables );
+unset( $wgSharedTables[$index] );
 
 ## Shared memory settings
 $wgMainCacheType = CACHE_NONE;
