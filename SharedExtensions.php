@@ -67,8 +67,9 @@ $wgGlobalPreferencesDB = $wgSharedDB;
 
 # GlobalUserrights
 $wgSharedTables[] = 'global_user_groups';
-$wgGroupPermissions['staff']['userrights-global'] = false; // Needs to be unset, as it is assigned automatically
 $wgGroupPermissions['steward']['userrights-global'] = true;
+# Unset staff as this not an existing group
+unset( $wgGroupPermissions['staff'] );
 
 # InterWiki
 $wgInterwikiCentralDB = $wgSharedDB;
