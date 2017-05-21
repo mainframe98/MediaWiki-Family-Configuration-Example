@@ -106,60 +106,6 @@ if ( !in_array ($wgDBname, $wgLocalDatabases ) ) {
 	// Optional: Redirect to a "No such wiki" page on the central wiki.
 }
 
-/*
-$wikiTagList = [];
-
-# Get a list of all the tag dblists
-$tagDbLists = glob( "$configDir/dblists/tags/*" );
-foreach ( $tagDbLists as $dblistfile ) {
-	$dblist = file( $dblistfile );
-
-	if ( in_array( $wgDBname, $dblist ) ) {
-		// Add the tag to the list of tags, which is equal to the name of the dblist, minus the
-		// file extension
-		$wikiTagList[] = basename( $dblistfile, '.dblist' );
-	}
-}
-*/
-
-$fgLoginOnlyDatabaseList = file( "$configDir/dblists/loginonly.dblist" );
-
-# Mark the wiki as login only if it is in the list of Login only databases
-foreach ( $fgLoginOnlyDatabaseList as $database ) {
-	$database = trim( $database );
-	$wgConf->settings['fgLoginOnlyWiki'][$database] = true;
-}
-
-$fgRestrictedDatabaseList = file( "$configDir/dblists/restricted.dblist" );
-
-# Mark the wiki as restricted if it is in the list of restricted databases
-foreach ( $fgRestrictedDatabaseList as $database ) {
-	$database = trim( $database );
-	// The wiki is login only when restricted, so set this too
-	$wgConf->settings['fgLoginOnlyWiki'][$database] = true;
-	$wgConf->settings['fgRestrictedWiki'][$database] = true;
-}
-
-$fgPrivateDatabaseList = file( "$configDir/dblists/private.dblist" );
-
-# Mark the wiki as private if it is in the list of private databases
-foreach ( $fgPrivateDatabaseList as $database ) {
-	$database = trim( $database );
-	// The wiki is login only when private, so set this too
-	$wgConf->settings['fgLoginOnlyWiki'][$database] = true;
-	// The wiki is restricted when private, so set this too
-	$wgConf->settings['fgRestrictedWiki'][$database] = true;
-	$wgConf->settings['fgPrivateWiki'][$database] = true;
-}
-
-$fgClosedDatabaseList = file( "$configDir/dblists/closed.dblist" );
-
-# Mark the wiki as closed if it is in the list of closed databases
-foreach ( $fgClosedDatabaseList as $database ) {
-	$database = trim( $database );
-	$wgConf->settings['fgClosedWiki'][$database] = true;
-}
-
 /**
  * passed to siteParamsCallback of a SiteConfiguration instance (see below)
  *

@@ -29,16 +29,23 @@ $wgConf->settings = [
 		'default' => "$wgScriptPath/images/" . $wgDBname . "_logo.png"
 	],
 	'fgLoginRequiredWiki' => [
-		'default' => false
+		'default' => false,
+	    'loginonly' => true,
+	    'restricted' => true,
+	    'private' => true
 	],
 	'fgRestrictedWiki' => [
-		'default' => false
+		'default' => false,
+		'restricted' => true,
+		'private' => true
 	],
 	'fgPrivateWiki' => [
-		'default' => false
+		'default' => false,
+		'private' => true
 	],
 	'fgClosedWiki' => [
-		'default' => false
+		'default' => false,
+	    'closed' => true
 	],
 	'wgRightsIcon' => [
 		'default' => "$wgResourceBasePath/resources/assets/licenses/cc-by-sa.png"
