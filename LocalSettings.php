@@ -17,9 +17,8 @@ if ( defined( 'MW_DB' ) ) {
 	// Define default suffix for that rare case
 	$fgSuffix = 'wiki';
 
-	// TODO: Run some edge case checks on this. The wiki name might contain a suffix value
 	foreach ( $wgConf->suffixes as $suffix ) {
-		if ( strpos( $wgDBname, $suffix ) > 0 ) {
+		if ( substr( $wgDBname, -strlen( $suffix ) ) == $suffix ) {
 			$fgSuffix = $suffix;
 			break;
 		}
@@ -46,7 +45,7 @@ if ( defined( 'MW_DB' ) ) {
 	$urlComponents = array_reverse( $urlComponents );
 
 	// If no sub domain has been given, set it to www as default
-	if ( count( $urlComponents ) < 2 ) {
+	if ( count( $urlComponents ) < 3 ) {
 		$urlComponents[2] = 'www';
 	}
 
@@ -163,7 +162,7 @@ foreach ( $fgClosedDatabaseList as $database ) {
  * passed to siteParamsCallback of a SiteConfiguration instance (see below)
  *
  * @param SiteConfiguration $conf
- * @param $wiki
+ * @param string $wiki
  * @return array
  */
 function efGetSiteParams( SiteConfiguration $conf, $wiki ) {
@@ -179,12 +178,12 @@ function efGetSiteParams( SiteConfiguration $conf, $wiki ) {
 	return [
 		'suffix' => $site,
 		'lang' => $lang,
+		'tags' => [],
 		'params' => [
 			'lang' => $lang,
 			'site' => $site,
 			'wiki' => $wiki,
 		],
-		'tags' => [],
 	];
 }
 
@@ -194,7 +193,7 @@ $wgConf->siteParamsCallback = 'efGetSiteParams';
 $wgConf->wikis = $wgLocalDatabases;
 
 # Extract the globals
-$wgConf->extractAllGlobals( $wikiname, $fgSuffix, [], $wikiTagList );
+$wgConf->extractAllGlobals( $wgDBname, $fgSuffix, [], $wikiTagList );
 
 # Load the extensions
 require_once( "$configDir/SharedExtensions.php" );
