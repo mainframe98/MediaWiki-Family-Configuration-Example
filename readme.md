@@ -17,13 +17,14 @@ This is an example configuration for a MediaWiki family from scratch. Existing w
 ### dblists
 This directory contains all database lists. The file structure is 1 database per line.
 * `all.dblist` contains all known databases. This file uses a different structure than the others as it also contains the site name and language code, separated by a pipe (|).
+
+#### tags
+Database lists in this folder are in the same format as in the parent folder. Databases listed in one or more of these files are tagged. The tag, such as 'echo', from echo.dblist, indicates that the wiki uses the extension Echo. This is used for configuration variables or extensions that are used on many wikis. The file name indicates the name of the tag, excluding the file extension. So for the earlier example, the dblist `echo.dblist` lists wikis where the tag 'echo' applies. The tag is set as a group in `InitialiseSettings.php`, similar to wiki suffixes.
+* `echo.dblists` contains all wikis that use the extension Echo.
 * `closed.dblist` contains all wikis that are closed, which means they cannot be edited by those who are not stewards.
 * `loginonly.dblist` contains all wikis that require an account to edit.
 * `restricted.dblist` contains all wikis that require being invited to edit, but the content may be viewed freely.
 * `private.dblist` contains all wikis that may only be read and edited by selected users, and stewards.
-
-#### tags
-Database lists in this folder are in the same format as in the parent folder. Databases listed in one or more of these files are tagged. The tag, such as 'echo', from echo.dblist, indicates that the wiki uses the extension Echo. This is used for configuration variables or extensions that are used on many wikis. The file name indicates the name of the tag, excluding the file extension. So for the earlier example, the dblist `echo.dblist` lists wikis where the tag 'echo' applies. The tag is set as a group in `InitialiseSettings.php`, similar to wiki suffixes.
 
 ## Using this example
 To use this example, there are a few things you must do:
