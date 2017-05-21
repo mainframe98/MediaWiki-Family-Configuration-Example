@@ -48,7 +48,7 @@ if ( defined( 'MW_DB' ) ) {
 
 	// Optional: Redirect different tld's to different wikis
 	// Example: www.example.nl => nl.example.org
-	if ( $urlComponents[0] != 'org' ) {
+	if ( $urlComponents[0] != 'org' && $urlComponents[0] != 'example' ) {
 		switch ( $urlComponents[0] ) {
 			default:
 				$urlComponents[2] = $urlComponents[0];
