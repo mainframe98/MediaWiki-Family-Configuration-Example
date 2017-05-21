@@ -6,10 +6,21 @@
 
 $configDir = __DIR__;
 
+$wgConf = new SiteConfiguration();
+$wgConf->suffixes = file( "$configDir/suffixes.list" );
+
 # Generate the db name
 if ( defined( 'MW_DB' ) ) {
 	// Command-line mode and maintenance scripts (e.g. update.php)
 	$wgDBname = MW_DB;
+
+	foreach ( $wgConf->suffixes as $suffix ) {
+		if ( substr( MW_DB, -strlen( $suffix ) ) == $suffix ) {
+			$wikiname = substr( MW_DB, 0, -strlen( $suffix ) );
+			break;
+		}
+	}
+
 } else {
 	// Web server
 	$server = $_SERVER['SERVER_NAME'];
@@ -64,9 +75,6 @@ if ( defined( 'MW_DB' ) ) {
 
 	$wgDBname = $wikiname . $suffix;
 }
-
-$wgConf = new SiteConfiguration();
-$wgConf->suffixes = file( "$configDir/suffixes.list" );
 
 # Import private settings
 require_once( "$configDir/PrivateSettings.php" );

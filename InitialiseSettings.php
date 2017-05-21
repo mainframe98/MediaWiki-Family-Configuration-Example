@@ -72,7 +72,7 @@ $wgConf->settings = [
 	'wgUseSiteJs' => [
 		'default' => false // Disabled for security reasons, request
 	],
-	# Don't add rel="nofollow" for these domains, as these sites are not external
+	// Don't add rel="nofollow" for these domains, as these sites are not external
     'wgNoFollowDomainExceptions' => [
     	'default' => [
     		'https://www.example.org'
