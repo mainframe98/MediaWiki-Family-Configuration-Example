@@ -35,6 +35,8 @@ $wgRegistrationExtensions = [
 ];
 
 wfLoadExtensions( $wgRegistrationExtensions );
+# Force loading so the settings can be correctly overridden
+ExtensionRegistry::getInstance()->loadFromQueue();
 require_once "$IP/extensions/Scribunto/Scribunto.php";
 
 # Configuration
