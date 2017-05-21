@@ -106,6 +106,7 @@ if ( !in_array ($wgDBname, $wgLocalDatabases ) ) {
 	// Optional: Redirect to a "No such wiki" page on the central wiki.
 }
 
+/*
 $wikiTagList = [];
 
 # Get a list of all the tag dblists
@@ -119,6 +120,7 @@ foreach ( $tagDbLists as $dblistfile ) {
 		$wikiTagList[] = basename( $dblistfile, '.dblist' );
 	}
 }
+*/
 
 $fgLoginOnlyDatabaseList = file( "$configDir/dblists/loginonly.dblist" );
 
@@ -166,19 +168,35 @@ foreach ( $fgClosedDatabaseList as $database ) {
  * @return array
  */
 function efGetSiteParams( SiteConfiguration $conf, $wiki ) {
+	global $configDir;
+
 	$site = null;
-	$lang = null;
+	$lang = $conf->settings['wgLanguageCode'][$wiki];
+	$tags = [];
+
 	foreach ( $conf->suffixes as $suffix ) {
 		if ( substr( $wiki, -strlen( $suffix ) ) == $suffix ) {
 			$site = $suffix;
-			$lang = substr( $wiki, 0, -strlen( $suffix ) );
 			break;
 		}
 	}
+
+	# Get a list of all the tag dblists
+	$tagDbLists = glob( "$configDir/dblists/tags/*" );
+	foreach ( $tagDbLists as $dblistfile ) {
+		$dblist = file( $dblistfile );
+
+		if ( in_array( $wiki, $dblist ) ) {
+			// Add the tag to the list of tags, which is equal to the name of the dblist, minus the
+			// file extension
+			$tags[] = basename( $dblistfile, '.dblist' );
+		}
+	}
+
 	return [
 		'suffix' => $site,
 		'lang' => $lang,
-		'tags' => [],
+		'tags' => $tags,
 		'params' => [
 			'lang' => $lang,
 			'site' => $site,
@@ -193,7 +211,7 @@ $wgConf->siteParamsCallback = 'efGetSiteParams';
 $wgConf->wikis = $wgLocalDatabases;
 
 # Extract the globals
-$wgConf->extractAllGlobals( $wgDBname, $fgSuffix, [], $wikiTagList );
+$wgConf->extractAllGlobals( $wgDBname );
 
 # Load the extensions
 require_once( "$configDir/SharedExtensions.php" );
