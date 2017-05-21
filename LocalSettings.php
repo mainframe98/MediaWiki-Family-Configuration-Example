@@ -6,24 +6,10 @@
 
 $configDir = __DIR__;
 
-$wgConf = new SiteConfiguration();
-$wgConf->suffixes = file( "$configDir/suffixes.list" );
-
 # Generate the db name
 if ( defined( 'MW_DB' ) ) {
 	// Command-line mode and maintenance scripts (e.g. update.php)
 	$wgDBname = MW_DB;
-
-	// Define default suffix for that rare case
-	$fgSuffix = 'wiki';
-
-	foreach ( $wgConf->suffixes as $suffix ) {
-		if ( substr( $wgDBname, -strlen( $suffix ) ) == $suffix ) {
-			$fgSuffix = $suffix;
-			break;
-		}
-	}
-
 } else {
 	// Web server
 	$server = $_SERVER['SERVER_NAME'];
@@ -70,12 +56,15 @@ if ( defined( 'MW_DB' ) ) {
 	// Remember to update suffixes.list when making edits to this configuration!
 	switch( $urlComponents[1] ) {
 		default:
-			$fgSuffix = 'wiki';
+			$suffix = 'wiki';
 			break;
 	}
 
-	$wgDBname = $wikiname . $fgSuffix;
+	$wgDBname = $wikiname . $suffix;
 }
+
+$wgConf = new SiteConfiguration();
+$wgConf->suffixes = file( "$configDir/suffixes.list" );
 
 # Import private settings
 require_once( "$configDir/PrivateSettings.php" );
@@ -107,7 +96,9 @@ if ( !in_array ($wgDBname, $wgLocalDatabases ) ) {
 }
 
 /**
- * passed to siteParamsCallback of a SiteConfiguration instance (see below)
+ * Callback function used to determine the language code and suffix from a given wiki and Site configuration object.
+ *
+ * This is passed to siteParamsCallback of a SiteConfiguration instance (see below)
  *
  * @param SiteConfiguration $conf
  * @param string $wiki
