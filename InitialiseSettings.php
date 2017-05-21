@@ -7,6 +7,9 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 # All wiki settings. Remember to save any default settings here, and not in CommonSettings.php
 $wgConf->settings = [
 	// General settings
+	'wgLanuageCode' => [
+		'default' => 'en'
+	],
 	'wgCapitalLinks' => [
 		'default' => true,
 	],

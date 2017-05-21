@@ -118,7 +118,7 @@ function efGetSiteParams( SiteConfiguration $conf, $wiki ) {
 	global $configDir;
 
 	$site = null;
-	$lang = $conf->settings['wgLanguageCode'][$wiki];
+	$lang = null;
 	$tags = [];
 
 	foreach ( $conf->suffixes as $suffix ) {
@@ -128,7 +128,7 @@ function efGetSiteParams( SiteConfiguration $conf, $wiki ) {
 		}
 	}
 
-	# Get a list of all the tag dblists
+	// Get a list of all the tag dblists
 	$tagDbLists = glob( "$configDir/dblists/tags/*" );
 	foreach ( $tagDbLists as $dblistfile ) {
 		$dblist = file( $dblistfile );
@@ -137,6 +137,25 @@ function efGetSiteParams( SiteConfiguration $conf, $wiki ) {
 			// Add the tag to the list of tags, which is equal to the name of the dblist, minus the
 			// file extension
 			$tags[] = basename( $dblistfile, '.dblist' );
+		}
+	}
+
+	// Set the language code based on a value in the settings area because the regular approach
+	// does not suffice, as sub domains are not limited to language codes
+	// Go the extra mile by checking the tags that are available for this wiki if an entry in the
+	// settings array does not exist, before picking the default language code
+	if ( isset( $conf->settings['wgLanguageCode'][$wiki] ) ) {
+		$lang = $conf->settings['wgLanguageCode'][$wiki];
+	} else {
+		foreach ( $tags as $tag ) {
+			if ( isset( $conf->settings['wgLanguageCode'][$tag] ) ) {
+				$lang = $conf->settings['wgLanguageCode'][$tag];
+			}
+		}
+
+		// Could not find the language code anywhere, so fallback to the default
+		if ( $lang == null) {
+			$lang = $conf->settings['wgLanguageCode']['default'];
 		}
 	}
 

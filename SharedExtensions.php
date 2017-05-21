@@ -118,9 +118,9 @@ $wgSpamBlacklistFiles = [
 
 # SiteMatrix
 $wgSiteMatrixFile = "$configDir/langlist";
-$wgSiteMatrixPrivateSites = "$configDir/dblists/private.dblist";
-$wgSiteMatrixFishbowlSites = "$configDir/dblists/restricted.dblist";
-$wgSiteMatrixClosedSites = "$configDir/dblists/closed.dblist";
+$wgSiteMatrixPrivateSites = "$configDir/dblists/tags/private.dblist";
+$wgSiteMatrixFishbowlSites = "$configDir/dblists/tags/restricted.dblist";
+$wgSiteMatrixClosedSites = "$configDir/dblists/tags/closed.dblist";
 $wgSiteMatrixSites = [
 	'wiki' => [
 		'name' => 'Example',
