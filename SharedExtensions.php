@@ -89,7 +89,6 @@ $wgGroupPermissions['steward']['nuke'] = true;
 # OAuth
 $wgMWOAuthCentralWiki = $wgSharedDB;
 $wgMWOAuthSecureTokenTransfer = true; // If the wikis do not use https, set this to false
-$wgGroupPermissions['users']['mwoauthmanagemygrants'] = true;
 $wgGroupPermissions['autoconfirmed']['mwoauthproposeconsumer'] = true;
 $wgGroupPermissions['autoconfirmed']['mwoauthupdateownconsumer'] = true;
 $wgGroupPermissions['steward']['mwoauthmanageconsumer'] = true;
