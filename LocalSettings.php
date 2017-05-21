@@ -37,11 +37,13 @@ if ( defined( 'MW_DB' ) ) {
 
 	// Optional: Redirect different tld's to different wikis
 	// Example: www.example.nl => nl.example.org
-	switch( $urlComponents[0] ) {
-		default:
-			$urlComponents[2] = $urlComponents[0];
-			$urlComponents[0] = 'org';
-			break;
+	if ( $urlComponents[0] != 'org' ) {
+		switch ( $urlComponents[0] ) {
+			default:
+				$urlComponents[2] = $urlComponents[0];
+				$urlComponents[0] = 'org';
+				break;
+		}
 	}
 
 	// Determine wiki name by adding all segments after the domain together
