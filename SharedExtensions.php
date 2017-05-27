@@ -108,6 +108,9 @@ $wgPdftoText = '/usr/bin/pdftotext';
 # RenameUser
 $wgGroupPermissions['bureaucrat']['renameuser'] = false;
 
+# RefreshSpecial
+$wgGroupPermissions['bureaucrat']['refreshspecial'] = false;
+
 # SpamBlacklist
 $wgSpamBlacklistFiles = [
 	"[[m:Spam blacklist]]", // Wikimedia's list
