@@ -94,9 +94,9 @@ $fgDatabaseList = file( "$configDir/dblists/all.dblist" );
 foreach ( $fgDatabaseList as $wiki ) {
 	$wikiDB = explode( '|', $wiki, 3 );
 	list( $dbName, $siteName, $siteLang ) = array_pad( $wikiDB, 3, '' );
-	$wgLocalDatabases[] = $dbName;
-	$wgConf->settings['wgSitename'][$dbName] = $siteName;
-	$wgConf->settings['wgLanguageCode'][$dbName] = $siteLang;
+	$wgLocalDatabases[] = trim( $dbName );
+	$wgConf->settings['wgSitename'][$dbName] = trim( $siteName );
+	$wgConf->settings['wgLanguageCode'][$dbName] = trim( $siteLang );
 }
 
 # Check if the obtained database name is in the list of databases
