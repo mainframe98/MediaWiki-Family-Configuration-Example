@@ -15,7 +15,7 @@ if ( defined( 'MW_DB' ) ) {
 	$wgDBname = MW_DB;
 
 	foreach ( $wgConf->suffixes as $suffix ) {
-		if ( substr( MW_DB, -strlen( $suffix ) ) == $suffix ) {
+		if ( substr( MW_DB, -strlen( $suffix ) ) === $suffix ) {
 			$wikiname = substr( MW_DB, 0, -strlen( $suffix ) );
 			break;
 		}
@@ -48,7 +48,7 @@ if ( defined( 'MW_DB' ) ) {
 
 	// Optional: Redirect different tld's to different wikis
 	// Example: www.example.nl => nl.example.org
-	if ( $urlComponents[0] != 'org' && $urlComponents[0] != 'example' ) {
+	if ( $urlComponents[0] !== 'org' && $urlComponents[0] !== 'example' ) {
 		switch ( $urlComponents[0] ) {
 			default:
 				$urlComponents[2] = $urlComponents[0];
@@ -100,7 +100,7 @@ foreach ( $fgDatabaseList as $wiki ) {
 }
 
 # Check if the obtained database name is in the list of databases
-if ( !in_array ($wgDBname, $wgLocalDatabases ) ) {
+if ( !in_array ( $wgDBname, $wgLocalDatabases ) ) {
 	require_once( "$configDir/WikiNotFound404.php" );
 	// Optional: Redirect to a "No such wiki" page on the central wiki.
 }
@@ -122,7 +122,7 @@ function efGetSiteParams( SiteConfiguration $conf, $wiki ) {
 	$tags = [];
 
 	foreach ( $conf->suffixes as $suffix ) {
-		if ( substr( $wiki, -strlen( $suffix ) ) == $suffix ) {
+		if ( substr( $wiki, -strlen( $suffix ) ) === $suffix ) {
 			$site = $suffix;
 			break;
 		}
@@ -154,15 +154,15 @@ function efGetSiteParams( SiteConfiguration $conf, $wiki ) {
 		}
 
 		// Could not find the language code anywhere, so fallback to the default
-		if ( $lang == null) {
+		if ( $lang === null ) {
 			$lang = $conf->settings['wgLanguageCode']['default'];
 		}
 	}
 
 	return [
 		'suffix' => $site,
-		'lang' => $lang,
-		'tags' => $tags,
+		'lang'   => $lang,
+		'tags'   => $tags,
 		'params' => [
 			'lang' => $lang,
 			'site' => $site,
@@ -186,5 +186,5 @@ require_once( "$configDir/LocalExtensions.php" );
 # Load the skins
 require_once( "$configDir/Skins.php" );
 
-# Get the Conditional Common Settings File
+# Load the Conditional Common Settings File
 require_once( "$configDir/ConditionalCommonSettings.php" );
