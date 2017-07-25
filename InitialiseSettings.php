@@ -33,9 +33,9 @@ $wgConf->settings = [
 	],
 	'fgLoginRequiredWiki' => [
 		'default' => false,
-	    'loginonly' => true,
-	    'restricted' => true,
-	    'private' => true
+		'loginonly' => true,
+		'restricted' => true,
+		'private' => true
 	],
 	'fgRestrictedWiki' => [
 		'default' => false,
@@ -48,7 +48,7 @@ $wgConf->settings = [
 	],
 	'fgClosedWiki' => [
 		'default' => false,
-	    'closed' => true
+		'closed' => true
 	],
 	'wgRightsIcon' => [
 		'default' => "$wgResourceBasePath/resources/assets/licenses/cc-by-sa.png"
@@ -76,21 +76,21 @@ $wgConf->settings = [
 		'default' => false // Disabled for security reasons, request
 	],
 	// Don't add rel="nofollow" for these domains, as these sites are not external
-    'wgNoFollowDomainExceptions' => [
-    	'default' => [
-    		'https://www.example.org'
-	    ]
-    ],
-    // This only needs to be set for wikis where $fgPrivateWiki = true
-    // Remember to add a + before the name of the wiki, as the array must be merged!
-    'wgWhitelistRead' => [
-	    'default' => [
-		    'Special:RunJobs',
-		    'Main Page',
-		    'MediaWiki:Common.css', // Custom CSS on the whitelisted pages should be visible
-		    'MediaWiki:Common.js', // Custom JavaScript on the whitelisted pages should work
-		    'Special:OAuth' // Required for OAuth functionality
-	    ]
+	'wgNoFollowDomainExceptions' => [
+		'default' => [
+			'https://www.example.org'
+		]
+	],
+	// This only needs to be set for wikis where $fgPrivateWiki = true
+	// Remember to add a + before the name of the wiki, as the array must be merged!
+	'wgWhitelistRead' => [
+		'default' => [
+			'Special:RunJobs',
+			'Main Page',
+			'MediaWiki:Common.css', // Custom CSS on the whitelisted pages should be visible
+			'MediaWiki:Common.js', // Custom JavaScript on the whitelisted pages should work
+			'Special:OAuth' // Required for OAuth functionality
+		]
 	],
 	//Extensions
 	'fgUseAbuseFilter' => [
@@ -131,11 +131,11 @@ $wgConf->settings = [
 		'default' => false,
 		'echo' => true,
 		'flow' => true, // Flow depends on echo
-	    'thanks' => true // So does thanks
+		'thanks' => true // So does thanks
 	],
 	'fgUseFlow' => [
 		'default' => false,
-	    'flow' => true,
+		'flow' => true,
 	],
 	 'fgUseThanks' => [
 		'default' => false

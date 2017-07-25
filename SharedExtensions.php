@@ -114,7 +114,7 @@ $wgGroupPermissions['bureaucrat']['refreshspecial'] = false;
 # SpamBlacklist
 $wgSpamBlacklistFiles = [
 	"[[m:Spam blacklist]]", // Wikimedia's list
-    // Spam black list from the central wiki
+	// Spam black list from the central wiki
 	//   database				title
 	"DB: $wgSharedDB MediaWiki:Global-spam-blacklist",
 ];
@@ -136,7 +136,7 @@ $wgSiteMatrixSites = [
 $wgTitleBlackListSources = [
 	[
 		'type' => 'url',
-	    'src' => 'https://meta.example.org/w/index.php?title=MediaWiki:Global-title-blacklist'
+		'src' => 'https://meta.example.org/w/index.php?title=MediaWiki:Global-title-blacklist'
 	]
 ];
 
