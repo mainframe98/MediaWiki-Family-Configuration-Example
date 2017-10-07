@@ -50,8 +50,6 @@ if ( $fgUseEcho ) {
 	$wgEchoSharedTrackingDB = $wgSharedDB;
 	$wgEchoCrossWikiNotifications = true;
 	$wgEchoUseCrossWikiBetaFeature = true;
-	$wgFlowUseMemcache = false; // Until memcached has been setup
-	$wgFlowSearchServers = $wgCirrusSearchServers;
 
 	if ( $fgUseThanks ) {
 		wfLoadExtension('Thanks' );
@@ -61,14 +59,14 @@ if ( $fgUseEcho ) {
 		wfLoadExtension( 'Flow' );
 
 		$wgFlowDefaultWikiDb = $wgSharedDB;
+		$wgFlowUseMemcache = false; // Until memcached has been setup
+		$wgFlowSearchServers = $wgCirrusSearchServers;
 
 		if ( $fgEnableGroupContentModerator ) {
 			$wgGroupPermissions['content-moderator']['flow-create-board'] = true;
 		}
 		$wgGroupPermissions['sysop']['flow-create-board'] = true;
 		$wgGroupPermissions['steward']['flow-create-board'] = true;
-
-
 		$wgGroupPermissions['steward']['flow-create-post'] = true;
 	}
 }
