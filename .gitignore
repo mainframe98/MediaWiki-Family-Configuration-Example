@@ -14,3 +14,7 @@ Desktop.ini
 ### MediaWiki config
 # Never put private settings in the repository!
 PrivateSettings.php
+
+.idea/
+vendor/
+composer.lock

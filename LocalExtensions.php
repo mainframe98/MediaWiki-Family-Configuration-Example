@@ -52,7 +52,7 @@ if ( $fgUseEcho ) {
 	$wgEchoUseCrossWikiBetaFeature = true;
 
 	if ( $fgUseThanks ) {
-		wfLoadExtension('Thanks' );
+		wfLoadExtension( 'Thanks' );
 	}
 
 	if ( $fgUseFlow ) {

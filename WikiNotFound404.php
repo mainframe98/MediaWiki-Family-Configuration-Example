@@ -1,13 +1,14 @@
 <?php
-#This file displays a 404 page if the wiki is not found in the list of databases
+/**
+ * This file displays a 404 page if the wiki is not found in the list of databases
+ */
 
 if ( $wgCommandLineMode ) {
 	echo "$wgDBname is not a known database." . PHP_EOL;
 } else {
-	header( "HTTP/1.0 404 Not Found" );
+	header( 'HTTP/1.0 404 Not Found' );
 
-	$html =
-	'<html>
+	echo '<html>
         <head>
             <style type="text/css">
                 html, body {
@@ -26,8 +27,6 @@ if ( $wgCommandLineMode ) {
             </div>
         </body>
     </html>';
-
-	echo $html;
 }
 
 exit;

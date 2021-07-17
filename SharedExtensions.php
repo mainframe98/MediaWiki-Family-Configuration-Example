@@ -27,7 +27,9 @@ $wgRegistrationExtensions = [
 	'RefreshSpecial',
 	'Renameuser',
 	'SiteMatrix',
-	'SyntaxHighlight_GeSHi', // On Linux, set chmod a+x/path/to/extensions/SyntaxHighlight_GeSHi/pygments/pygmentize to allow the library to execute
+	// On Linux, set chmod a+x/path/to/extensions/SyntaxHighlight_GeSHi/pygments/pygmentize
+	// to allow the library to execute
+	'SyntaxHighlight_GeSHi',
 	'SpamBlacklist',
 	'Tabber',
 	'TitleBlacklist',
@@ -52,7 +54,8 @@ $wgCirrusSearchServers = [ 'localhost' ];
 $wgCirrusSearchAllowLeadingWildcard = false;
 
 # GlobalBlocking
-$wgApplyGlobalBlocks = $wgDBname !== $wgSharedDB; // Don't apply a global block on the central wiki, so it can be used to contest a global block
+// Don't apply a global block on the central wiki, so it can be used to contest a global block
+$wgApplyGlobalBlocks = $wgDBname !== $wgSharedDB;
 $wgGlobalBlockingDatabase = $wgSharedDB;
 
 # GlobalCssJs
@@ -113,7 +116,7 @@ $wgGroupPermissions['bureaucrat']['refreshspecial'] = false;
 
 # SpamBlacklist
 $wgSpamBlacklistFiles = [
-	"[[m:Spam blacklist]]", // Wikimedia's list
+	'[[m:Spam blacklist]]', // Wikimedia's list
 	// Spam black list from the central wiki
 	//   database				title
 	"DB: $wgSharedDB MediaWiki:Global-spam-blacklist",

@@ -28,7 +28,7 @@ if ( defined( 'MW_DB' ) ) {
 	$urlComponents = explode( '.', $server );
 
 	if ( !$urlComponents ) {
-		require_once( "$configDir/WikiNotFound404.php" );
+		require_once "$configDir/WikiNotFound404.php";
 	}
 
 	// Reverse the array so the tld is the first item in the array
@@ -67,7 +67,7 @@ if ( defined( 'MW_DB' ) ) {
 
 	// Determine the database name suffix by checking the domain name
 	// Remember to update suffixes.list when making edits to this configuration!
-	switch( $urlComponents[1] ) {
+	switch ( $urlComponents[1] ) {
 		default:
 			$suffix = 'wiki';
 			break;
@@ -77,13 +77,13 @@ if ( defined( 'MW_DB' ) ) {
 }
 
 # Import private settings
-require_once( "$configDir/PrivateSettings.php" );
+require_once "$configDir/PrivateSettings.php";
 
 # Get the shared settings for all wikis
-require_once( "$configDir/CommonSettings.php" );
+require_once "$configDir/CommonSettings.php";
 
 # Load the settings from InitialiseSettings.php which contains the settings for all wikis
-require_once( "$configDir/InitialiseSettings.php" );
+require_once "$configDir/InitialiseSettings.php";
 
 $wgLocalDatabases = [];
 
@@ -100,8 +100,8 @@ foreach ( $fgDatabaseList as $wiki ) {
 }
 
 # Check if the obtained database name is in the list of databases
-if ( !in_array ( $wgDBname, $wgLocalDatabases ) ) {
-	require_once( "$configDir/WikiNotFound404.php" );
+if ( !in_array( $wgDBname, $wgLocalDatabases ) ) {
+	require_once "$configDir/WikiNotFound404.php";
 	// Optional: Redirect to a "No such wiki" page on the central wiki.
 }
 
@@ -115,6 +115,7 @@ if ( !in_array ( $wgDBname, $wgLocalDatabases ) ) {
  * @return array
  */
 function efGetSiteParams( SiteConfiguration $conf, $wiki ) {
+	// phpcs:ignore MediaWiki.NamingConventions.ValidGlobalName.allowedPrefix
 	global $configDir;
 
 	$site = null;
@@ -180,11 +181,11 @@ $wgConf->wikis = $wgLocalDatabases;
 $wgConf->extractAllGlobals( $wgDBname );
 
 # Load the extensions
-require_once( "$configDir/SharedExtensions.php" );
-require_once( "$configDir/LocalExtensions.php" );
+require_once "$configDir/SharedExtensions.php";
+require_once "$configDir/LocalExtensions.php";
 
 # Load the skins
-require_once( "$configDir/Skins.php" );
+require_once "$configDir/Skins.php";
 
 # Load the Conditional Common Settings File
-require_once( "$configDir/ConditionalCommonSettings.php" );
+require_once "$configDir/ConditionalCommonSettings.php";

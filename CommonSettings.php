@@ -13,14 +13,14 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 ## For more information on customizing the URLs
 ## (like /w/index.php/Page_title to /wiki/Page_title) please see:
 ## https://www.mediawiki.org/wiki/Manual:Short_URL
-$wgScriptPath = "/w";
-$wgArticlePath = "/wiki/$1";
+$wgScriptPath = '/w';
+$wgArticlePath = '/wiki/$1';
 
 ## The URL path to static resources (images, scripts, etc.)
 $wgResourceBasePath = $wgScriptPath;
 
-$wgEmergencyContact = "info@example.org";
-$wgPasswordSender = "reset-password@example.org";
+$wgEmergencyContact = 'info@example.org';
+$wgPasswordSender = 'reset-password@example.org';
 
 ## UPO means: this is also a user preference option
 
@@ -29,7 +29,7 @@ $wgEnotifWatchlist = true; # UPO
 $wgEmailAuthentication = true;
 
 # MySQL table options to use during installation or update
-$wgDBTableOptions = "ENGINE=InnoDB, DEFAULT CHARSET=binary";
+$wgDBTableOptions = 'ENGINE=InnoDB, DEFAULT CHARSET=binary';
 
 # Experimental charset support for MySQL 5.0.
 $wgDBmysql5 = false;
@@ -51,13 +51,13 @@ $wgMemCachedServers = [];
 
 ## To enable image uploads, make sure the 'images' directory
 ## is writable, then set this to true:
-$wgUploadDirectory = "{$wgScriptPath}/$wgDBname/images";
+$wgUploadDirectory = "{$wgScriptPath}/images/$wgDBname";
 $wgUploadPath = $wgUploadDirectory;
 $wgAllowCopyUploads = true;
 $wgMaxUploadSize = 1024 * 1024 * 25; # 25 Mb
 $wgCopyUploadsFromSpecialUpload = true;
 $wgUseImageMagick = true;
-$wgImageMagickConvertCommand = "/usr/bin/convert";
+$wgImageMagickConvertCommand = '/usr/bin/convert';
 
 # Periodically send a pingback to https://www.mediawiki.org/ with basic data
 # about this MediaWiki instance. The Wikimedia Foundation shares this data
@@ -67,7 +67,7 @@ $wgPingback = true;
 ## If you use ImageMagick (or any other shell command) on a
 ## Linux server, this will need to be set to the name of an
 ## available UTF-8 locale
-$wgShellLocale = "C.UTF-8";
+$wgShellLocale = 'C.UTF-8';
 
 # Set Tidy to RemexHtml as it is the same as used by WMF, so it'll function nicely along Parsoid
 $wgTidyConfig = [
@@ -80,7 +80,7 @@ $wgTidyConfig = [
 $wgCacheDirectory = "$IP/$wgDBName/cache";
 
 # Changing this will log out all existing sessions.
-$wgAuthenticationTokenVersion = "1";
+$wgAuthenticationTokenVersion = '1';
 
 # Set the cookie domain to a non explicit sub domain to prevent users being logged out when
 # accessing the wiki family from other sub domains
@@ -93,7 +93,7 @@ $wgCrossSiteAJAXdomains = [
 ];
 
 # Path to the GNU diff3 utility. Used for conflict resolution.
-$wgDiff3 = "/usr/bin/diff3";
+$wgDiff3 = '/usr/bin/diff3';
 
 # User css/jss
 $wgAllowUserCss = true;

@@ -4,7 +4,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	exit;
 }
 
-## This file contains all sensitive settings. Under no circumstances is this file to be made public!
+## This file contains all sensitive settings. Don't ever make this file public!
 
 ## Database settings
 $wgDBtype = "mysql";

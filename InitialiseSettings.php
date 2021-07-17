@@ -29,7 +29,7 @@ $wgConf->settings = [
 		'default' => 'UTC'
 	],
 	'wgLogo' => [
-		'default' => "$wgScriptPath/images/" . $wgDBname . "_logo.png"
+		'default' => "$wgScriptPath/images/" . $wgDBname . '_logo.png'
 	],
 	'fgLoginRequiredWiki' => [
 		'default' => false,
@@ -57,10 +57,10 @@ $wgConf->settings = [
 		'default' => 'Project:Copyright'
 	],
 	'wgRightsText' => [
-		'default' => "Creative Commons Naamsvermelding-Gelijk delen"
+		'default' => 'Creative Commons Naamsvermelding-Gelijk delen'
 	],
 	'wgRightsUrl' => [
-		'default' => "https://creativecommons.org/licenses/by-sa/4.0/"
+		'default' => 'https://creativecommons.org/licenses/by-sa/4.0/'
 	],
 	'wgServer' => [
 		'default' => "//$wikiname.example.org"
@@ -92,7 +92,7 @@ $wgConf->settings = [
 			'Special:OAuth' // Required for OAuth functionality
 		]
 	],
-	//Extensions
+	// Extensions
 	'fgUseAbuseFilter' => [
 		'default' => false,
 	],
@@ -100,7 +100,7 @@ $wgConf->settings = [
 		'default' => false,
 	],
 	'wgBabelMainCategory' => [
-		'default' =>  [
+		'default' => [
 			'0' => 'User %code%-0',
 			'1' => 'User %code%-1',
 			'2' => 'User %code%-2',
@@ -111,7 +111,7 @@ $wgConf->settings = [
 		]
 	],
 	'wgBabelCategoryNames' => [
-		'default' =>  'User %code%'
+		'default' => 'User %code%'
 	],
 	'fgUseBetaFeatures' => [
 		'default' => false
@@ -161,7 +161,7 @@ $wgConf->settings = [
 	'fgUseSandboxLink' => [
 		'default' => false
 	],
-	//Skins
+	// Skins
 	'wgDefaultSkin' => [
 		'default' => 'Vector'
 	],
@@ -174,7 +174,7 @@ $wgConf->settings = [
 	'fgUseMonoBook' => [
 		'default' => true
 	],
-	//Groups
+	// Groups
 	'fgEnableGroupAutopatrol' => [
 		'default' => true
 	],
