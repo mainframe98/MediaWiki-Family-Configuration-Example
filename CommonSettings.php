@@ -77,7 +77,7 @@ $wgTidyConfig = [
 ## Set $wgCacheDirectory to a writable directory on the web server
 ## to make your wiki go slightly faster. The directory should not
 ## be publicly accessible from the web.
-$wgCacheDirectory = "$IP/$wgDBName/cache";
+$wgCacheDirectory = "$IP/$wgDBname/cache";
 
 # Changing this will log out all existing sessions.
 $wgAuthenticationTokenVersion = '1';
